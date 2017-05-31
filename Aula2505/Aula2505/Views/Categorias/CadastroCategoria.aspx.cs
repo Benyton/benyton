@@ -1,4 +1,5 @@
-﻿using Aula2505.Models;
+﻿using Aula2505.Controllers;
+using Aula2505.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Aula2505.Views.Categorias
             Session["Descricao"] = txtDescricao.Text;
             Session["Ativo"] = ckbAtivo.Checked;
 
-            BaseDadosContainer contexto = new BaseDadosContainer();
+            CategoriasControllers ctrl = new CategoriasControllers();
 
             Categoria cat = new Categoria();
 
@@ -29,8 +30,9 @@ namespace Aula2505.Views.Categorias
             cat.Descricao = Session["Descricao"].ToString();
             cat.Ativo = Convert.ToBoolean(Session["Ativo"].ToString());
 
-            contexto.Categorias.Add(cat);
-            contexto.SaveChanges();
+            ctrl.Adicionar(cat);
+            //ctrl.Categorias.Add(cat);
+            //ctrl.SaveChanges();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -38,6 +40,45 @@ namespace Aula2505.Views.Categorias
             txtNome.Text = String.Empty;
             txtDescricao.Text = String.Empty;
             ckbAtivo.Checked = false;
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            CategoriasControllers ctrl = new CategoriasControllers();
+            Categoria cat = new Categoria();
+
+            Session["Nome"] = txtNome.Text;
+
+            cat.Id = Convert.ToInt32(Session["Nome"].ToString());
+
+            cat = ctrl.LocalizarPorID(cat.Id);
+
+            txtNome.Text = cat.Nome;
+            txtDescricao.Text = cat.Descricao;
+            ckbAtivo.Checked = cat.Ativo;
+
+            Session["Nome"] = txtNome.Text;
+            Session["Descricao"] = txtDescricao.Text;
+            Session["Ativo"] = ckbAtivo.Checked;
+            Session["ID"] = cat.Id;
+
+        }
+
+        protected void btnAlterar_Click(object sender, EventArgs e)
+        {
+            CategoriasControllers ctrl = new CategoriasControllers();
+            Categoria cat = new Categoria();
+
+            cat.Id = Convert.ToInt32(Session["ID"].ToString());
+
+            //cat.Id = Convert.ToInt32(Session["Nome"].ToString());
+            //cat = ctrl.LocalizarPorID(cat.Id);
+
+            cat.Nome = txtNome.Text;
+            cat.Descricao = txtDescricao.Text;
+            cat.Ativo = ckbAtivo.Checked;
+
+            ctrl.Editar(cat);
         }
     }
 }
