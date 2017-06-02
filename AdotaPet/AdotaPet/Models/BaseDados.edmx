@@ -4,11 +4,46 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="BaseDados.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="BaseDadosTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="BaseDados.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BaseDadosStoreContainer">
+    <EntitySet Name="CategoriaSet" EntityType="BaseDados.Store.CategoriaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PetSet" EntityType="BaseDados.Store.PetSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CategoriaPet" Association="BaseDados.Store.CategoriaPet">
+      <End Role="Categoria" EntitySet="CategoriaSet" />
+      <End Role="Pet" EntitySet="PetSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CategoriaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Porte" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PetSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Raca" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sexo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CategoriaId" Type="int" Nullable="false" />
+    <Property Name="Codigo" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CategoriaPet">
+    <End Role="Categoria" Type="BaseDados.Store.CategoriaSet" Multiplicity="1" />
+    <End Role="Pet" Type="BaseDados.Store.PetSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="CategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BaseDados" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -25,7 +60,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Porte" Type="String" Nullable="false" />
+          <Property Name="Porte" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Pet" Relationship="BaseDados.CategoriaPet" FromRole="Categoria" ToRole="Pet" />
         </EntityType>
         <EntityType Name="Pet">
@@ -33,11 +68,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" Nullable="false" />
-          <Property Name="Raca" Type="String" Nullable="false" />
-          <Property Name="Sexo" Type="String" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Raca" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Categoria" Relationship="BaseDados.CategoriaPet" FromRole="Pet" ToRole="Categoria" />
           <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="CategoriaPet">
           <End Type="BaseDados.Categoria" Role="Categoria" Multiplicity="1" />
@@ -55,13 +91,30 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="BaseDados" />
-        <Alias Key="Target" Value="BaseDados.Store" />
-        <EntityContainerMapping CdmEntityContainer="BaseDadosContainer" StorageEntityContainer="BaseDadosTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BaseDadosStoreContainer" CdmEntityContainer="BaseDadosContainer">
+    <EntitySetMapping Name="CategoriaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BaseDados.Categoria)">
+        <MappingFragment StoreEntitySet="CategoriaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Porte" ColumnName="Porte" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PetSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BaseDados.Pet)">
+        <MappingFragment StoreEntitySet="PetSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Raca" ColumnName="Raca" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -75,6 +128,8 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
