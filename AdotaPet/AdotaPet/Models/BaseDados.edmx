@@ -29,7 +29,6 @@
     <Property Name="Raca" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Sexo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CategoriaId" Type="int" Nullable="false" />
-    <Property Name="Codigo" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="CategoriaPet">
     <End Role="Categoria" Type="BaseDados.Store.CategoriaSet" Multiplicity="1" />
@@ -73,7 +72,6 @@
           <Property Name="Sexo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Categoria" Relationship="BaseDados.CategoriaPet" FromRole="Pet" ToRole="Categoria" />
           <Property Name="CategoriaId" Type="Int32" Nullable="false" />
-          <Property Name="Codigo" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="CategoriaPet">
           <End Type="BaseDados.Categoria" Role="Categoria" Multiplicity="1" />
@@ -109,7 +107,6 @@
           <ScalarProperty Name="Raca" ColumnName="Raca" />
           <ScalarProperty Name="Sexo" ColumnName="Sexo" />
           <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
-          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

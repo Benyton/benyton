@@ -19,7 +19,6 @@ namespace AdotaPet.Models
         public string Raca { get; set; }
         public string Sexo { get; set; }
         public int CategoriaId { get; set; }
-        public int Codigo { get; set; }
     
         public virtual Categoria Categoria { get; set; }
     }

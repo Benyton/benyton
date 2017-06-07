@@ -217,6 +217,7 @@
     <Content Include="Views\Categorias\CadastroCategoria.aspx" />
     <Content Include="Views\Categorias\ListaCategoria.aspx" />
     <Content Include="Views\Pets\CadastroPet.aspx" />
+    <Content Include="Views\Pets\Editar.aspx" />
     <Content Include="Views\Pets\ListaPets.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -328,6 +329,13 @@
     </Compile>
     <Compile Include="Views\Pets\CadastroPet.aspx.designer.cs">
       <DependentUpon>CadastroPet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pets\Editar.aspx.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Pets\Editar.aspx.designer.cs">
+      <DependentUpon>Editar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Pets\ListaPets.aspx.cs">
       <DependentUpon>ListaPets.aspx</DependentUpon>

@@ -1,13 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaPets.aspx.cs" Inherits="AdotaPet.Views.Pets.ListaPets" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Editar.aspx.cs" Inherits="AdotaPet.Views.Pets.Editar" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1> Pets</h1>
-    <asp:GridView ID="gvPets" runat="server">
-        <Columns>
-            <asp:ButtonField CommandName="Excluir" Text="Excluir"/>
-            <asp:ButtonField CommandName="Editar" Text="Editar"/>
-        </Columns>
-    </asp:GridView>
-
+    <h1>Edita Pet</h1>
+    <br />
     <br />
     <asp:Label ID="lblCodigo" runat="server" Text="Categoria"></asp:Label>
     <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>

@@ -6,7 +6,6 @@
     <asp:Label ID="lblPorte" runat="server" Text="Porte"></asp:Label>
     <asp:TextBox ID="txtPorte" runat="server"></asp:TextBox>
     <br />
-    <br />
     <asp:Button CssClass="btn btn-success"  ID="btnSalvar" runat="server" Text="Salvar" OnClick="btnSalvar_Click" />
     <asp:Button CssClass="btn btn-warning" ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
 </asp:Content>

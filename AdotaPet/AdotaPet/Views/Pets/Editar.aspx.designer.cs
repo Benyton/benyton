@@ -10,16 +10,7 @@
 namespace AdotaPet.Views.Pets {
     
     
-    public partial class ListaPets {
-        
-        /// <summary>
-        /// gvPets control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPets;
+    public partial class Editar {
         
         /// <summary>
         /// lblCodigo control.

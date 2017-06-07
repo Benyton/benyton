@@ -19,12 +19,14 @@ namespace AdotaPet.Views.Categorias
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
             Session["Porte"] = txtPorte.Text;
+            //Session["Codigo"] = txtCodigo.Text;
 
             CategoriasControllers ctrl = new CategoriasControllers();
 
             Categoria cat = new Categoria();
 
             cat.Porte = Session["Porte"].ToString();
+            //cat.Codigo = Session["Codigo"].ToString();
 
             ctrl.Adicionar(cat);
         }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/01/2017 21:49:06
+-- Date Created: 06/06/2017 20:24:51
 -- Generated from EDMX file: C:\Benyton\AdotaPet\AdotaPet\Models\BaseDados.edmx
 -- --------------------------------------------------
 
@@ -49,8 +49,7 @@ CREATE TABLE [dbo].[PetSet] (
     [Nome] nvarchar(max)  NOT NULL,
     [Raca] nvarchar(max)  NOT NULL,
     [Sexo] nvarchar(max)  NOT NULL,
-    [CategoriaId] int  NOT NULL,
-    [Codigo] int  NOT NULL
+    [CategoriaId] int  NOT NULL
 );
 GO
 
