@@ -31,7 +31,7 @@ namespace AdotaPet.Views.Pets
             Session["Sexo"] = rdbSexo.SelectedValue;
         }
 
-        protected void btnSalvar_Click(object sender, EventArgs e)
+        protected void btnAlterar_Click(object sender, EventArgs e)
         {
             PetControllers ctrl = new PetControllers();
             Pet pet = new Pet();

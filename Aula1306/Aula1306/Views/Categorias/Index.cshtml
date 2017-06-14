@@ -1,0 +1,25 @@
+﻿
+@model IEnumerable<Aula1306.Models.Categoria>
+
+@{
+    ViewBag.Title = "Categorias";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*@foreach (string item in ViewBag.ListaCategorias)
+{
+    <a>@item</a>
+    @: |
+    if (true)
+    {
+
+    }
+}*@
+
+@foreach(var item in Model)
+{
+    <p>@item.Ativo</P>
+    <p>@item.Descricao</p>
+}
+
