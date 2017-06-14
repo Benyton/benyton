@@ -22,5 +22,6 @@
     <br />
     <br />
     <asp:Button CssClass="btn btn-success"  ID="btnAlterar" runat="server" Text="Alterar" OnClick="btnAlterar_Click" />
+    <asp:Button CssClass="btn btn-danger"  ID="btnExcluir" runat="server" Text="Excluir" OnClick="btnExcluir_Click" />
     <asp:Button CssClass="btn btn-warning" ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
 </asp:Content>

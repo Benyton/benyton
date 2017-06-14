@@ -11,24 +11,28 @@ namespace AdotaPet.Views.Pets
 {
     public partial class Editar : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            PetControllers ctrl = new PetControllers();
-            Pet pet = new Pet();
+            if (!IsPostBack)
+            {
+                PetControllers ctrl = new PetControllers();
+                Pet pet = new Pet();
 
-            pet.Id = Convert.ToInt32(Session["ID"].ToString());
+                pet.Id = Convert.ToInt32(Session["ID"].ToString());
 
-            pet = ctrl.LocalizarPorID(pet.Id);
+                pet = ctrl.LocalizarPorID(pet.Id);
 
-            txtCodigo.Text = Convert.ToString(pet.CategoriaId);
-            txtNome.Text = pet.Nome;
-            txtRaca.Text = pet.Raca;
-            rdbSexo.SelectedValue = pet.Sexo;
+                txtCodigo.Text = Convert.ToString(pet.CategoriaId);
+                txtNome.Text = pet.Nome;
+                txtRaca.Text = pet.Raca;
+                rdbSexo.SelectedValue = pet.Sexo;
 
-            Session["Codigo"] = txtCodigo.Text;
-            Session["Nome"] = txtNome.Text;
-            Session["Raca"] = txtRaca.Text;
-            Session["Sexo"] = rdbSexo.SelectedValue;
+                Session["Codigo"] = txtCodigo.Text;
+                Session["Nome"] = txtNome.Text;
+                Session["Raca"] = txtRaca.Text;
+                Session["Sexo"] = rdbSexo.SelectedValue;
+            }
         }
 
         protected void btnAlterar_Click(object sender, EventArgs e)
@@ -54,6 +58,21 @@ namespace AdotaPet.Views.Pets
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnExcluir_Click(object sender, EventArgs e)
+        {
+            PetControllers ctrl = new PetControllers();
+            Pet pet = new Pet();
+
+            pet.Id = Convert.ToInt32(Session["ID"].ToString());
+
+            pet.CategoriaId = Convert.ToInt32(txtCodigo.Text);
+            pet.Nome = txtNome.Text;
+            pet.Raca = txtRaca.Text;
+            pet.Sexo = rdbSexo.SelectedValue;
+
+            ctrl.Excluir(pet);
         }
     }
 }
