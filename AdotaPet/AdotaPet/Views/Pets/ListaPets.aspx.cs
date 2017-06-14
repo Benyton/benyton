@@ -36,7 +36,8 @@ namespace AdotaPet.Views.Pets
             if (command.Equals("Excluir"))
             {
                 // Redirecionando para tela de exclusao
-                Response.Redirect("Excluir.aspx");
+                Session["ID"] = gvPets.Rows[linha].Cells[2].Text;
+                Response.Redirect("Editar.aspx");
             }
             else
             {
