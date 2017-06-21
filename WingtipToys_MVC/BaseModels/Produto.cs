@@ -5,6 +5,7 @@ namespace BaseModels
 {
     class Produto
     {
+        public int ProdutoID { get; set; }
         [Required]
         [StringLength(20)]
         public string Nome { get; set; }
