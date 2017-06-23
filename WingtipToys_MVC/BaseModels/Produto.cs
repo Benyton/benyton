@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BaseModels
 {
-    class Produto
+    public class Produto
     {
         public int ProdutoID { get; set; }
         [Required]

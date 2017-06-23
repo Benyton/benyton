@@ -51,9 +51,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Views/Pets/CadastroPet">Home</a></li>
-                        <li><a runat="server" href="~/Views/Categorias/CadastroCategoria">Cadastrar categoria</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/Views/Pets/CadastroPet">Cadastra Pets</a></li>
+                        <li><a runat="server" href="~/Views/Categorias/CadastroCategoria">Cadastra Categorias</a></li>
+                        <li><a runat="server" href="~/Views/Pets/ListaPets">Lista Pets</a></li>
+                        <li><a runat="server" href="~/Views/Categorias/ListaCategoria">Lista Categorias</a></li>
                     </ul>
                 </div>
             </div>
